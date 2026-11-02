@@ -8,6 +8,7 @@ Une course fictive tourne automatiquement dans le navigateur. Aucune installatio
 - La simulation commence à 1 min 45 pour proposer immédiatement des fiches. Vitesse ×5 par défaut, temps réel ou ×20 au choix ; pause et recommencer disponibles.
 - Piles, filtres, détail par dossard, comparaison de sources, agrandissement commun schéma/notes, exemple audio synthétique (signal sonore de cinq secondes), chronos, journal et aperçu d’impression.
 - Absence du dossard 4 ; dessalage du 8 avant la porte 8 ; réception retardée d’une porte du 2 ; correction du 5 de 2 à 50. L’alerte manquante s’efface à réception ou par Vu.
+- Tableaux Slalom/KCross, suivi technique simulé (attente résolue à 02:54) et gestion des archives en mémoire.
 - Deux archives fictives sont disponibles, dont un Time Trial Kayak Cross.
 - Les juges déportés servent à illustrer la comparaison : cette fonction n’est pas activée dans l’APK de course actuelle.
 
@@ -23,4 +24,4 @@ Créer un dépôt public distinct `jugement-traps-demo`, sans recopier de donné
 
 Aucun processus Python, dépendance npm, service externe ou clé n’est nécessaire. Tous les chemins d’assets sont relatifs, compatibles avec une URL de projet GitHub Pages. La CSP interdit les connexions de l’application (`connect-src 'none'`) et son API est simulée exclusivement en mémoire.
 
-Sources dérivées de l’interface Jugement 0.20/layout55 ; programme de production inchangé. `build.py` régénère le fichier autonome et l’archive. Les tests du moteur se trouvent dans `work/web-demo/test-demo.cjs` dans l’espace de développement.
+Sources dérivées de l’interface Jugement 0.23/layout64 ; programme de production inchangé. `build.py` régénère le fichier autonome et l’archive. Les tests du moteur se trouvent dans `work/web-demo/test-demo.cjs` dans l’espace de développement.

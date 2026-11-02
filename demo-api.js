@@ -8,10 +8,11 @@ window.Demo=(()=>{
  function active(){tick();return E.snapshot(state);}
  function catalog(){return [{...active().race,key:'',active:true,sheets:active().events.length},...[...archives.entries()].map(([key,s])=>({...s.race,key,active:false,sheets:s.events.length}))];}
  function status(){return {role:state.role,roleConfirmed:true,online:true,paired:state.role==='ja',replicated:state.role==='ja',pending:0,assetsPending:0,lastSync:Date.now(),source:'Simulation dans ce navigateur',error:'',operator:'Démonstration',code:'123456',requiresRestart:false};}
- function phones(){return Object.entries(E.profiles()).map(([device,p])=>({device,post:p.post||'Déporté',kind:'slalom',version:47,seen:Date.now(),held:!!state.preparation,pending:0,profile:p}));}
+ function phones(){return Object.entries(E.profiles()).map(([device,p])=>({device,post:p.post||'Déporté',kind:'slalom',version:52,seen:Date.now(),held:!!state.preparation,pending:0,profile:p}));}
+ function technical(){const time=state.time;const delayed=time>=100&&time<174;return {at:Date.now(),label:state.label,anomalies:delayed?1:0,phones:phones().map((p,i)=>{const pending=delayed&&i===2;const channels={};for(const name of ['manager','judgment','signals','audio'])channels[name]={available:true,pending:pending&&name==='judgment'?1:0,unknown:0,items:pending&&name==='judgment'?[{bib:2,gates:[10],revision:1}]:[],incoming:0,outgoing:0};return {...p,judge:p.profile.officials[0].name,ageMs:500,channels,issues:pending?[{level:'warning',text:'Transmission Jugement en attente · exemple simulé, résolu automatiquement à 02:54'}]:[]};})};}
  function reset(kind=state.kind){state.time=105;state.kind=kind;state.acknowledged=[];state.grants=[];state.paused=false;last=performance.now();}
  function archiveActive(){archives.set('simulation-'+counter++,active());}
- function recovery(){const r=state.recovery;if(r.phase==='text'&&performance.now()-r.since>2500)r.phase='audio';if(r.phase==='audio'&&performance.now()-r.since>5000)r.phase='done';return {...r,posts:r.posts.map((p,i)=>({...p,textDone:['audio','done'].includes(r.phase),audioDone:r.phase==='done'}))};}
+ function recovery(){const r=state.recovery;if(r.phase==='text'&&performance.now()-r.since>2500)r.phase='audio';if(r.phase==='audio'&&performance.now()-r.since>5000)r.phase='done';return {...r,completion:r.phase==='done'?'complete':undefined,posts:r.posts.map((p,i)=>({...p,textDone:['audio','done'].includes(r.phase),audioDone:r.phase==='done',verification:{verified:r.phase==='done',expectedSheets:30,missingSheets:0,expectedResults:0,missingResults:0,expectedAudios:2,missingAudios:0}}))};}
  async function route(input,options={}){
   const raw=typeof input==='string'?input:input.url;if(!raw.startsWith('/api/')){state.unexpected.push(raw);throw Error('La démonstration refuse les requêtes externes.');}
   const u=new URL(raw,'https://demo.invalid'),p=u.pathname,body=options.body?JSON.parse(options.body):{},post=(options.method||'GET')==='POST';let out;
@@ -22,10 +23,11 @@ window.Demo=(()=>{
   else if(p==='/api/deployment'){if(post&&body.action==='configure')state.role=body.role;out=status();}
   else if(p==='/api/deployment/code')out={code:'123456',expiresAt:Date.now()+600000};
   else if(p.startsWith('/api/deployment/'))out=status();
-  else if(p==='/api/session')out={active:active().race,preparation:state.preparation,phones:phones(),manager:{host:'Simulation',port:0},managerCandidates:[]};
+  else if(p==='/api/session')out={active:active().race,preparation:state.preparation,phones:phones(),manager:{host:'Simulation',port:0},managerCandidates:[],technical:technical()};
   else if(p==='/api/journal'){
    const data=u.searchParams.get('archive')?archives.get(u.searchParams.get('archive')):active();let items=[...(data?.journal||[])].reverse();const bib=+u.searchParams.get('bib'),kind=u.searchParams.get('kind'),before=+u.searchParams.get('before'),search=(u.searchParams.get('search')||'').toLowerCase();items=items.filter(x=>(!bib||x.data.bib===bib)&&(!kind||x.kind===kind)&&(!before||x.seq<before)&&(!search||JSON.stringify(x).toLowerCase().includes(search)));out={items:items.slice(0,200),next:items.length>200?items[199].seq:null};
   }
+  else if(p==='/api/course/delete'){const target=archives.get(body.archive);if(!post||!target||body.expectedRace!==state.race||body.race!==target.race.id||body.race===state.race||body.confirmation!=='EFFACER LES ARCHIVES PC')throw Error('Confirmation ou archive invalide');for(const [key,value]of archives)if(value.race.id===target.race.id)archives.delete(key);out={stored:true,pending:false,replica:'Copies fictives supprimées dans ce navigateur uniquement.'};}
   else if(p==='/api/course/label'){state.label=body.label||'Course de découverte';out={stored:true};}
   else if(p==='/api/course/reopen'){const s=archives.get(body.archive);if(!s)throw Error('Archive de démonstration inconnue');archiveActive();state.race=s.race.id;state.label=s.race.label;reset(s.race.discipline);out={stored:true};}
   else if(p==='/api/race/reset'){archiveActive();state.race='10000000-0000-4000-8000-'+String(++counter).padStart(12,'0');reset();out=active().race;}

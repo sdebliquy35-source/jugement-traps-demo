@@ -19,7 +19,7 @@
   if(/fermer|annuler/.test(t))return 'close';if(/nouvelle version|mises? à jour|actualiser|synchron|rechercher|recharg/.test(t))return 'refresh';
   if(/pause|suspendre/.test(t))return 'pause';if(/reprendre le direct|continuer|relancer/.test(t))return 'play';
   if(/imprim|aperçu/.test(t))return 'print';if(/journal/.test(t))return 'journal';if(/chrono/.test(t))return 'clock';if(/infos|détails techniques/.test(t))return 'info';if(/export|télécharg/.test(t))return 'download';
-  if(/récupér|ancienne course|reprendre cette course/.test(t))return 'history';if(/effacer/.test(t))return 'erase';if(/nommer|modifier|changer le rôle/.test(t))return 'edit';
+  if(/récupér|ancienne course|reprendre cette course|gérer les archives/.test(t))return 'history';if(/effacer/.test(t))return 'erase';if(/nommer|modifier|changer le rôle/.test(t))return 'edit';
   if(/nouvelle course|prochaine course/.test(t))return 'add';if(/autoriser|lever la protection/.test(t))return 'unlock';if(/protection/.test(t))return 'lock';
   if(/écouter|audio/.test(t))return 'audio';if(/code|association/.test(t))return 'key';if(/poste et connexion/.test(t))return 'settings';
   if(/serveur jugement/.test(t))return 'server';if(/juge arbitre/.test(t))return 'judge';if(/filtrer/.test(t))return 'search';

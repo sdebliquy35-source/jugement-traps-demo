@@ -238,3 +238,81 @@ body>header{padding:16px 24px}body>header h1{font-size:24px;margin:4px 0}body>he
 .dossier-nav{padding:14px;background:#e2edf4;border:1px solid #b9cbd8;border-radius:10px;gap:14px;align-items:end}
 .dossier-reader{display:flex;flex-direction:column;gap:18px}.dossier-reader>h2{margin:8px 0 0}
 .pile-picker select:disabled{background:#edf0f2;color:#71808b;cursor:not-allowed;border-color:#d1d8de;opacity:1}
+
+/* Tableau synthétique, distinct des fiches : secteurs colorés, en-têtes fixes. */
+.penalty-grid-tools{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin:16px 0}
+.penalty-grid-tools label{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:700}
+.penalty-grid-tools input{width:150px}.penalty-grid-tools button{min-width:44px;min-height:42px;font-size:20px}
+.penalty-grid-status{font-size:12px;color:#526876;padding-bottom:10px}
+.penalty-grid-scroll{max-height:calc(100vh - 340px);min-height:140px;overflow:auto;border:1px solid #c3d1db;border-radius:10px;background:white;isolation:isolate}
+.penalty-grid{border-collapse:separate;border-spacing:0;width:100%;min-width:900px;font-variant-numeric:tabular-nums}
+.penalty-grid th,.penalty-grid td{border-right:1px solid #ccd6de;border-bottom:1px solid #ccd6de;text-align:center;padding:12px 8px;min-width:64px;white-space:nowrap}
+.penalty-grid thead th{position:sticky;top:0;z-index:4;background:#18364a;color:white;font-size:19px;font-weight:800;height:48px}
+.penalty-grid tr>th:first-child{position:sticky;left:0;z-index:2;min-width:155px;text-align:left;background:var(--sector-bg,#e4edf4);color:#18364a}
+.penalty-grid thead tr>th:first-child{z-index:5;background:#18364a;color:white;font-size:15px}
+.penalty-grid tbody tr>th{font-size:17px;font-weight:800}.penalty-grid th small{display:block;font-size:11px;font-weight:500;margin-top:5px;max-width:175px;overflow:hidden;text-overflow:ellipsis}
+.penalty-grid .sector-0{--sector-bg:#dceaf8}.penalty-grid .sector-1{--sector-bg:#e5e0f6}.penalty-grid .sector-2{--sector-bg:#dcefe6}.penalty-grid .sector-3{--sector-bg:#f4e7cf}.penalty-grid .sector-4{--sector-bg:#f5dfe7}
+.penalty-grid .penalty-sector-header th{background:var(--sector-bg);font-size:14px;padding:9px 12px;letter-spacing:.2px;border-top:2px solid white}
+.penalty-grid td.grid-value{font-size:24px;font-weight:800;color:#142e3e}.penalty-grid td.value-0{background:#b8efbc}.penalty-grid td.value-2{background:#ffde3b}.penalty-grid td.value-50{background:#c62828;color:white}
+.penalty-grid td.grid-empty{background:#f7f9fb;color:#a5b3be}.penalty-grid td.grid-blocked{background:#fde3e3;color:#9b292f;font-size:11px;font-weight:800;white-space:normal;max-width:85px}
+.penalty-grid td.grid-updated{animation:penalty-arrival 1.8s ease-out}@keyframes penalty-arrival{0%,35%{box-shadow:inset 0 0 0 3px #135779}100%{box-shadow:inset 0 0 0 0 transparent}}
+.penalty-grid-empty{padding:18px}.penalty-window-root{background:white;border:1px solid #cbd7df;border-radius:12px;padding:20px}.penalty-window-root h2{margin:0 0 8px}
+.penalty-grid-window>header,.penalty-grid-window>#deployment-bar,.penalty-grid-window>#consultation-status,.penalty-grid-window>#ja-command-status{display:none!important}
+.penalty-grid-window main>:not(.penalty-window-root){display:none!important}.penalty-grid-window main{padding:18px;max-width:none}.penalty-grid-window .penalty-grid-scroll{max-height:calc(100vh - 220px)}
+#cross-table>h2{margin:12px 0 4px}#cross-results>h2,#cross-results>p{display:none}
+@media(max-width:650px){.penalty-grid-tools{gap:8px}.penalty-grid-window main{padding:8px}.penalty-window-root{padding:12px}.penalty-grid-tools input{width:115px}.penalty-grid-scroll{max-height:70vh}}
+@media(prefers-reduced-motion:reduce){.penalty-grid td.grid-updated{animation:none;outline:2px solid #135779;outline-offset:-2px}}
+@media print{.penalty-grid-tools{display:none}.penalty-grid-scroll{max-height:none!important;overflow:visible}.penalty-grid{min-width:0}.penalty-grid th,.penalty-grid td{padding:4px;min-width:0}.penalty-grid thead th,.penalty-grid tr>th:first-child{position:static}}
+
+.penalty-grid td.grid-multiple{background:#fff8e9;white-space:normal}.penalty-grid .grid-chip{display:inline-flex;align-items:center;justify-content:center;min-width:32px;padding:6px;margin:2px;border-radius:5px;font-weight:800;font-size:22px}.penalty-grid .grid-chip.value-0{background:#b8efbc}.penalty-grid .grid-chip.value-2{background:#ffde3b}.penalty-grid .grid-chip.value-50{background:#c62828;color:white}
+
+/* Orientation définitive : portes en tête, dossards dans la première colonne. */
+.penalty-grid thead th:not(:first-child){background:var(--sector-bg,#dceaf8);color:#18364a;font-size:17px;min-width:80px}
+.penalty-grid tr>th:first-child{min-width:80px;width:90px;text-align:center}.penalty-grid tbody tr>th:first-child{background:#e4edf4;font-size:22px}
+.penalty-sector-legend{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}.penalty-sector-legend span{background:var(--sector-bg);padding:6px 12px;border-radius:6px;font-size:13px;font-weight:750;color:#18364a}
+.penalty-sector-legend .sector-0{--sector-bg:#dceaf8}.penalty-sector-legend .sector-1{--sector-bg:#e5e0f6}.penalty-sector-legend .sector-2{--sector-bg:#dcefe6}.penalty-sector-legend .sector-3{--sector-bg:#f4e7cf}.penalty-sector-legend .sector-4{--sector-bg:#f5dfe7}
+.penalty-grid-window .penalty-grid-scroll{max-height:calc(100vh - 265px)}
+
+/* Tableau57 : grille grise lisible dans les deux disciplines. */
+.penalty-grid th,.penalty-grid td{border-right-color:#89949e;border-bottom-color:#89949e}
+.penalty-grid-scroll{border-color:#89949e}
+/* Slalom : une taille fixe pour 25 portes, indépendante des portes déjà reçues. */
+.slalom-grid-scroll{container-type:inline-size;scrollbar-gutter:stable}
+.penalty-grid.slalom-grid{--grid-cell:calc((100cqw - 56px)/25);table-layout:fixed;width:100%;min-width:0}
+.slalom-grid .grid-bib-col{width:56px}.slalom-grid .grid-gate-col{width:var(--grid-cell)}
+.penalty-grid.slalom-grid th,.penalty-grid.slalom-grid td{box-sizing:border-box;min-width:0;max-width:none;padding:0;overflow:hidden;text-align:center;white-space:nowrap}
+.penalty-grid.slalom-grid tbody td{height:var(--grid-cell);font-size:clamp(10px,calc(var(--grid-cell)*.55),30px);line-height:1;font-weight:800}
+.penalty-grid.slalom-grid tbody tr>th:first-child{width:56px;min-width:0;height:var(--grid-cell);font-size:clamp(12px,calc(var(--grid-cell)*.45),22px);line-height:1}
+.penalty-grid.slalom-grid thead th{background:#e3e8ec;color:#18364a;font-size:13px;min-width:0;left:auto}
+.penalty-grid.slalom-grid thead .grid-post-heading th{top:0;height:28px;min-height:28px;border-top:3px solid #465761}
+.penalty-grid.slalom-grid thead .grid-post-title{border-left:3px solid #465761;border-right:3px solid #465761;border-bottom:2px solid #465761;font-size:clamp(9px,calc(var(--grid-cell)*.32),14px);text-overflow:ellipsis}
+.penalty-grid.slalom-grid thead .door-heading th{top:28px;height:30px;min-height:30px;background:#eef1f3;font-size:clamp(10px,calc(var(--grid-cell)*.4),17px);border-bottom:3px solid #465761}
+.penalty-grid.slalom-grid thead .grid-corner{left:0;top:0;z-index:6;width:56px;height:58px;background:#18364a;color:white;font-size:11px}
+.penalty-grid.slalom-grid .sector-start{border-left:3px solid #465761}.penalty-grid.slalom-grid .sector-end{border-right:3px solid #465761}
+.penalty-grid.slalom-grid tbody tr:last-child td:not(.grid-reserved){border-bottom:3px solid #465761}
+.penalty-grid.slalom-grid td.value-0,.penalty-grid .grid-chip.value-0{background:#00ff00;color:#000}.penalty-grid.slalom-grid td.value-2{background:#ffde3b;color:#000}.penalty-grid.slalom-grid td.value-50{background:#c62828;color:#fff}
+.penalty-grid.slalom-grid td.grid-blocked{font-size:clamp(6px,calc(var(--grid-cell)*.21),10px);white-space:normal;word-break:break-word;line-height:1.1}
+.penalty-grid.slalom-grid td.grid-multiple{white-space:nowrap}.penalty-grid.slalom-grid .grid-chip{box-sizing:border-box;min-width:0;max-width:45%;padding:1px;margin:0 1px;font-size:clamp(8px,calc(var(--grid-cell)*.32),18px);line-height:1}
+.penalty-grid.slalom-grid .grid-reserved{background:white!important;border:0!important;padding:0!important;color:transparent}
+.penalty-grid-window .slalom-grid-scroll{max-height:calc(100vh - 225px)}
+.penalty-grid.slalom-grid thead .door-heading th{color:#18364a}
+.penalty-grid td.value-0{background:#00ff00;color:#000}.penalty-grid td.value-2{background:#ffde3b;color:#000}.penalty-grid td.value-50{background:#c62828;color:#fff}
+
+/* Tableau59 : valeurs sans gras, signalements courts. */
+.penalty-grid td.grid-value,.penalty-grid.slalom-grid tbody td.grid-value,.penalty-grid .grid-chip,.penalty-grid.slalom-grid .grid-chip{font-weight:400}
+
+/* Tableau60 : lignes de dossards réduites d’un tiers, en-têtes inchangés. */
+.penalty-grid:not(.slalom-grid) tbody th,.penalty-grid:not(.slalom-grid) tbody td{height:calc(53px*2/3);padding-top:0;padding-bottom:0;line-height:1}
+.penalty-grid.slalom-grid tbody td,.penalty-grid.slalom-grid tbody tr>th:first-child{height:calc(var(--grid-cell)*2/3);padding-top:0;padding-bottom:0}
+
+/* Tableau61 : chiffres des lignes de dossards réduits d’un tiers. */
+.penalty-grid tbody tr>th:first-child{font-size:calc(22px*2/3)}
+.penalty-grid .grid-chip{font-size:calc(22px*2/3)}
+.penalty-grid.slalom-grid tbody td.grid-value{font-size:calc(clamp(10px,calc(var(--grid-cell)*.55),30px)*2/3)}
+.penalty-grid.slalom-grid tbody tr>th:first-child{font-size:calc(clamp(12px,calc(var(--grid-cell)*.45),22px)*2/3)}
+.penalty-grid.slalom-grid .grid-chip{font-size:calc(clamp(8px,calc(var(--grid-cell)*.32),18px)*2/3)}
+#show-technical{background:#e8eef3;border-color:#9bb1bf}#show-technical.technical-warning{background:#ffe3ac;border-color:#bf861f;color:#513800}
+.technical-dialog{width:calc(100vw - 40px);max-width:1450px;max-height:92vh}.technical-stamp{color:#4c6676;font-size:13px}.technical-body{overflow:auto;max-height:65vh}
+.technical-table{border-collapse:separate;border-spacing:0;width:100%;font-size:13px}.technical-table th,.technical-table td{padding:10px;border-right:1px solid #bdcbd5;border-bottom:1px solid #bdcbd5;text-align:left;vertical-align:top}.technical-table thead th{position:sticky;top:0;background:#19374b;color:white;z-index:1}.technical-table small{display:block;color:#566c7b;margin-top:5px}.technical-table button{font-size:13px;padding:6px;max-width:240px;text-align:left}.technical-attention{background:#fff1d4}.technical-error{background:#ffe2de}.technical-details{max-width:720px;width:calc(100vw - 40px);max-height:90vh;overflow:auto}
+
+.role-ja #manage-archives{display:none!important}#manage-archives{background:#f4e7e7;border-color:#bd9292;color:#762f2f}.archive-delete-dialog select{max-width:100%;width:100%;font-size:16px}.archive-delete-dialog .danger{background:#9f3030;color:white}.archive-delete-dialog input[type=text]{width:130px;font-size:18px}.archive-delete-dialog{max-width:780px}
