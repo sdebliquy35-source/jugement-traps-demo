@@ -3,12 +3,12 @@
 (function(){
  let displayed=null,pending=null,apply=null,paused=false,pendingGeneration=0,displayedGeneration=-1;
  const viewers=new Map();
- function fingerprint(data){return JSON.stringify([data.race,data.events,data.posts,data.results,data.control?.states,data.control?.arrivals,data.supervision]);}
+ function fingerprint(data){return JSON.stringify([data.race,data.events,data.livePenalties,data.posts,data.results,data.control?.states,data.control?.arrivals,data.supervision]);}
  function gateFingerprint(item){return JSON.stringify([item.event.id,item.event.identification,item.gate,item.event.gateReceivedAt?.[item.gate.gate]]);}
  function newestGate(data,event,gate){
   let best=null;
   for(const e of data.events||[]){
-   if((e.race||e.session)!==(event.race||event.session)||e.device!==event.device||e.bib!==event.bib||(e.run||'')!==(event.run||''))continue;
+   if((e.race||e.session)!==(event.race||event.session)||(e.device!==event.device&&!(event.identification?.post&&PileModel.postKey(e.identification?.post)===PileModel.postKey(event.identification.post)&&(e.identification?.officials||[]).some(j=>j.function==='Juge Transmetteur'&&j.gates.includes(gate.gate))&&(event.identification?.officials||[]).some(j=>j.function==='Juge Transmetteur'&&j.gates.includes(gate.gate))))||e.bib!==event.bib||(e.run||'')!==(event.run||''))continue;
    const g=e.gates.find(g=>g.gate===gate.gate);if(!g)continue;
    const at=g.enteredAt||e.createdAt,prior=best?(best.gate.enteredAt||best.event.createdAt):0;
    if(!best||at>prior||(at===prior&&(e.createdAt>best.event.createdAt||(e.id===best.event.id&&e.revision>best.event.revision))))best={event:e,gate:g};
@@ -16,7 +16,7 @@
   return best;
  }
  function held(){
-  return paused||(typeof printing!=='undefined'&&printing)||!!document.querySelector('dialog[open]')||!!document.activeElement?.closest('.toolbar input,.toolbar select,#course-select,.pile-source-pickers select,.pile-page-nav select')||!!window.getSelection()?.toString();
+  return paused||(typeof printing!=='undefined'&&printing)||!!document.querySelector('dialog[open]:not(.chrono-detached-root)')||!!document.activeElement?.closest('.toolbar input,.toolbar select,#course-select,.pile-source-pickers select,.pile-page-nav select')||!!window.getSelection()?.toString();
  }
  function preserve(action){
   if(typeof printing!=='undefined'&&printing)return action();
@@ -54,10 +54,10 @@
    info.next=item;
   }
  }
- function receive(data,callback,generation){
+ function receive(data,callback,generation,force=false){
   apply=callback;
   if(pending&&pendingGeneration!==generation)pending=null;
-  if(displayed&&generation===displayedGeneration&&held()){
+  if(!force&&displayed&&generation===displayedGeneration&&held()){
    pending=fingerprint(data)!==fingerprint(displayed)?data:null;pendingGeneration=generation;preserve(banner);return;
   }
   displayed=data;displayedGeneration=generation;pending=null;preserve(()=>{callback(data);banner();});
@@ -81,12 +81,12 @@
   banner();
  }
  function configure(dialog,options){const info=viewers.get(dialog);if(info)Object.assign(info,options);else watch(dialog,options);banner();}
- window.Consultation={receive,watch,configure,preserve,newestGate,flush,latest:()=>pending||displayed};
+ window.Consultation={receive,watch,configure,preserve,newestGate,flush,resetView(){displayed=null;pending=null;apply=null;paused=false;pendingGeneration=0;displayedGeneration=-1;banner();},latest:()=>pending||displayed};
  document.getElementById('consultation-toggle').onclick=()=>{paused=!paused;if(!paused)flush();banner();};
  document.getElementById('consultation-apply').onclick=()=>flush(true);
  window.addEventListener('afterprint',()=>queueMicrotask(()=>flush()));
  document.addEventListener('focusout',()=>setTimeout(()=>flush(),0));
  document.addEventListener('selectionchange',()=>{if(!window.getSelection()?.toString())flush();});
  // The catalog must not reconstruct a native select while it is being used.
- window.Consultation.catalogHeld=()=>!!document.querySelector('dialog[open]')||document.activeElement?.id==='course-select'||paused;
+ window.Consultation.catalogHeld=()=>!!document.querySelector('dialog[open]:not(.chrono-detached-root)')||document.activeElement?.id==='course-select'||paused;
 })();

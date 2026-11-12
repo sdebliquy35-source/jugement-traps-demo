@@ -3,10 +3,11 @@ let deploymentState=null,roleDialog=null;
 async function deploymentCommand(data){return courseCommand('/api/deployment',data);}
 async function refreshDeployment(){
  try{const r=await fetch('/api/deployment',{cache:'no-store'});if(!r.ok)return;deploymentState=await r.json();
-  const s=deploymentState;document.title=s.role==='server'?'Serveur Jugement':s.role==='ja'?'Jugement · Juge Arbitre':'Jugement · Choix du poste';document.querySelector('header h1').textContent=document.title;document.body.classList.toggle('role-ja',s.role==='ja');document.body.classList.toggle('role-setup',s.role==='setup');
+  const s=deploymentState;if(!printing&&titleBeforePrint===null)document.title=new URLSearchParams(location.search).get('tableau')==='chronos'?'Liste des chronos · '+(s.role==='ja'?'Juge Arbitre':'Jugement'):new URLSearchParams(location.search).get('tableau')==='penalites'?'Tableau des pénalités · '+(s.role==='ja'?'Juge Arbitre':'Jugement'):s.role==='server'?'Serveur Jugement':s.role==='ja'?'Jugement · Juge Arbitre':'Jugement · Choix du poste';document.querySelector('header h1').textContent=document.title;document.body.classList.toggle('role-ja',s.role==='ja');document.body.classList.toggle('role-setup',s.role==='setup');
   if(s.role==='ja')$('connection').textContent=s.replicated?'● Copie locale disponible':'● Aucune course copiée';
   $('deployment-role').textContent=s.role==='server'?'Serveur Jugement':s.role==='ja'?'Poste Juge Arbitre':'Choisir le rôle de ce poste';
   window.jaHasCopy=!!s.replicated;
+  if($('compet-settings'))$('compet-settings').hidden=s.role!=='server';window.PenaltyTables?.refreshRole();
   window.jaOffline=s.role==='ja'&&!s.online;$('open-protection').disabled=!!viewArchive||window.jaOffline;$('open-protection').title=window.jaOffline?'La levée nécessite une connexion au Serveur Jugement':'';
   $('deployment-bar').classList.toggle('offline',s.role==='ja'&&!s.online);
   $('deployment-state').textContent=s.role==='server'?'Réception des téléphones · gestion centrale des courses':s.role==='setup'?'Choix mémorisé après validation':
@@ -14,7 +15,7 @@ async function refreshDeployment(){
   $('deployment-state').title=s.error||s.source;
   if(s.role==='ja'){const empty=document.querySelector('#sheets .empty');if(empty){const title=empty.querySelector('h2');if(title)title.textContent='Aucune fiche dans la copie locale';for(const p of empty.querySelectorAll('p'))p.hidden=true;}}
   if((s.role==='setup'||!s.roleConfirmed)&&!roleDialog)deploymentDialog(true);
- }catch(e){$('deployment-state').textContent='Application locale indisponible';}
+ }catch(e){$('deployment-bar').classList.add('offline');$('deployment-state').textContent='Application locale indisponible';}
 }
 function deploymentDialog(first=false){
  if(roleDialog){roleDialog.showModal();return;}

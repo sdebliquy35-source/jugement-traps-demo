@@ -1,27 +1,31 @@
-# Jugement TRAPS — démonstration interactive
+# Démonstration publique Jugement TRAPS · interface 0.70
 
-Une course fictive tourne automatiquement dans le navigateur. Aucune installation, aucun compte pour le visiteur et aucun accès à Manager, aux téléphones ou au Serveur Jugement ne sont nécessaires.
+Lien conservé : https://sdebliquy35-source.github.io/jugement-traps-demo/
+
+La course fictive tourne dans le navigateur : 30 dossards, départ toutes les 20 secondes, durée d’environ une minute. La simulation commence à 1 min 45 et avance à vitesse ×5. Slalom ou Time Trial Cross, vitesse, pause et recommencer se choisissent dans le bandeau violet de démonstration.
 
 ## Découvrir
 
-- 30 dossards, cinq postes de quatre portes, départs toutes les 20 secondes et parcours d’environ une minute.
-- La simulation commence à 1 min 45 pour proposer immédiatement des fiches. Vitesse ×5 par défaut, temps réel ou ×20 au choix ; pause et recommencer disponibles.
-- Piles, filtres, détail par dossard, comparaison de sources, agrandissement commun schéma/notes, exemple audio synthétique (signal sonore de cinq secondes), chronos, journal et aperçu d’impression.
-- Absence du dossard 4 ; dessalage du 8 avant la porte 8 ; réception retardée d’une porte du 2 ; correction du 5 de 2 à 50. L’alerte manquante s’efface à réception ou par Vu.
-- Tableaux Slalom/KCross, suivi technique simulé (attente résolue à 02:54) et gestion des archives en mémoire.
-- Deux archives fictives sont disponibles, dont un Time Trial Kayak Cross.
-- Les juges déportés servent à illustrer la comparaison : cette fonction n’est pas activée dans l’APK de course actuelle.
+- Présentation actuelle : trois cadres repliables, réceptions et alertes compactes, tri/impression repliable, piles violettes par poste, dix dossards par fiche, ordre dossards ou départs.
+- Filtres avec accès direct, agrandissement commun schéma/notes, note manuscrite et texte, audio synthétique d’exemple de cinq secondes.
+- Tableaux des pénalités et liste des chronos dans des fenêtres séparées. Sur le même navigateur et la même origine, elles partagent la simulation locale ; leurs filtres et affichages restent indépendants.
+- Contrôle des téléphones : noms courts, batterie/charge, canaux de transmission, libération simulée. Une attente disparaît à 02:54 ; une batterie faible apparaît entre 02:00 et 03:30, puis disparaît.
+- Absence du dossard 4, dessalage du 8, correction du 5, alertes manquantes et bouton Vu. Ces exemples n’agissent jamais sur de vrais appareils.
+- Messages à un juge ou à tous les téléphones fictifs, chronométreurs compris ; progression automatique envoyé/reçu/en attente/lu/effacé.
+- Chargement de course pas à pas, liste et parcours préremplis par une source fictive, postes, activation, archives et remise à zéro. Import PCE illustratif : aucun contenu du fichier choisi n’est envoyé ou interprété.
+- Connexion CompetFFCK, protections, renvois et récupération sont simulés. Les IP réservées aux exemples ne sont jamais contactées. Un renvoi affiche un bilan fictif, sans reproduire tous les contrôles d’un serveur de course.
+- Vue Juge Arbitre accessible via Poste et connexion. Deux archives fictives restent consultables. Les juges déportés illustrent la comparaison future, encore inactive sur les téléphones de course.
 
-Les noms, identifiants, données et audio sont inventés. Chaque visiteur possède sa propre simulation en mémoire ; actualiser la page repart de l’état initial. Les actions d’administration restent dans cette simulation. Les exports ou impressions ne contiennent que ces exemples. Cette démonstration ne valide pas la liaison réseau, la réplication JA ou le comportement des appareils réels.
+## Données et limites
 
-## Utilisation sans Internet
+Noms, identifiants et données inventés. Aucune communication vers Manager, CompetFFCK, Jugement ou un téléphone. La politique CSP `connect-src 'none'` et l’interception de tous les appels API interdisent les échanges de l’application. Pas de serveur Python, clé, base SQLite ou configuration réelle dans ce dépôt public.
 
-Ouvrir `jugement-demo-hors-ligne.html` dans un navigateur récent. Ce fichier contient les styles, scripts, dessin et audio ; il peut être partagé comme un document. Il faut le télécharger puis l’ouvrir, pas utiliser l’aperçu Drive. Les navigateurs de bureau récents sont recommandés pour découvrir une interface de gestion prévue pour un grand écran.
+Les données fictives sont conservées dans le stockage local du navigateur pour coordonner les fenêtres et reprendre une découverte. **Recommencer** relance la course d’exemple. Ce n’est ni une installation du programme complet, ni un test de réseau, de réplication réelle ou de chronométrage.
 
-## Publication sur GitHub Pages
+## Sans Internet
 
-Créer un dépôt public distinct `jugement-traps-demo`, sans recopier de données ou configuration de production. Déposer **le contenu de `dist/` à la racine** (et non le dossier lui-même). Dans Settings → Pages, choisir Deploy from a branch, branche main, dossier / (root), puis Save. Le visiteur n’a pas besoin de compte GitHub. Le fichier `.nojekyll` évite toute transformation Jekyll.
+Télécharger `jugement-demo-hors-ligne.html` et l’ouvrir dans un navigateur récent. Il contient styles, scripts, schéma et audio. Les tableaux s’ouvrent dans des fenêtres distinctes si le navigateur l’autorise ; le partage entre fenêtres dépend de l’accès au stockage local pour les fichiers locaux. Un écran d’ordinateur est recommandé.
 
-Aucun processus Python, dépendance npm, service externe ou clé n’est nécessaire. Tous les chemins d’assets sont relatifs, compatibles avec une URL de projet GitHub Pages. La CSP interdit les connexions de l’application (`connect-src 'none'`) et son API est simulée exclusivement en mémoire.
+## Maintenance privée
 
-Sources dérivées de l’interface Jugement 0.23/layout64 ; programme de production inchangé. `build.py` régénère le fichier autonome et l’archive. Les tests du moteur se trouvent dans `work/web-demo/test-demo.cjs` dans l’espace de développement.
+Sources de préparation canoniques : `TRAPS/Demo-Jugement/`. `python3 build.py` copie l’interface statique actuelle depuis `../Jugement/static`, ajoute l’adaptateur fictif et régénère la version autonome et le ZIP local. `node test-demo.cjs` vérifie syntaxe, scénarios et isolation. Publier uniquement le contenu de `dist/` dans le dépôt public existant `jugement-traps-demo`, branche main, sans modifier son réglage GitHub Pages. Ne pas confondre cette présentation web et l’APK TRAPS 2.0 TEST.

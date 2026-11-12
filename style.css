@@ -99,7 +99,7 @@ header{display:grid;grid-template-columns:1fr 1.2fr 1fr;padding:20px 3vw}header 
 /* Chronos: large race time, compact diagnostics, explicit absence override. */
 .chrono-dialog{max-width:1100px;width:calc(100% - 48px)}
 .chrono-results{table-layout:fixed;font-variant-numeric:tabular-nums}
-.chrono-results th:nth-child(1){width:11%}.chrono-results th:nth-child(2),.chrono-results th:nth-child(3){width:22%}.chrono-results th:nth-child(4){width:37%}.chrono-results th:nth-child(5){width:8%}
+/* Chrono widths follow semantic columns; selection is optional. */
 .chrono-results .chrono-bib{font-size:20px;font-weight:750}.chrono-results .chrono-clock{font-size:18px;white-space:nowrap}.chrono-results .chrono-elapsed{font-size:32px;font-weight:800;white-space:nowrap;background:#edf6fb;color:#12374b}
 .chrono-results .chrono-absence,.chrono-absence{background:#ede6fb;color:#653b91;font-size:26px;font-weight:800;text-align:center;padding:15px}
 .session-dialog .chrono-info-button{margin:0;padding:6px;min-width:36px;min-height:36px;border-radius:50%;background:#eef3f7;color:#4c6575;font-size:24px;line-height:1;border:1px solid #c7d8e5}
@@ -316,3 +316,346 @@ body>header{padding:16px 24px}body>header h1{font-size:24px;margin:4px 0}body>he
 .technical-table{border-collapse:separate;border-spacing:0;width:100%;font-size:13px}.technical-table th,.technical-table td{padding:10px;border-right:1px solid #bdcbd5;border-bottom:1px solid #bdcbd5;text-align:left;vertical-align:top}.technical-table thead th{position:sticky;top:0;background:#19374b;color:white;z-index:1}.technical-table small{display:block;color:#566c7b;margin-top:5px}.technical-table button{font-size:13px;padding:6px;max-width:240px;text-align:left}.technical-attention{background:#fff1d4}.technical-error{background:#ffe2de}.technical-details{max-width:720px;width:calc(100vw - 40px);max-height:90vh;overflow:auto}
 
 .role-ja #manage-archives{display:none!important}#manage-archives{background:#f4e7e7;border-color:#bd9292;color:#762f2f}.archive-delete-dialog select{max-width:100%;width:100%;font-size:16px}.archive-delete-dialog .danger{background:#9f3030;color:white}.archive-delete-dialog input[type=text]{width:130px;font-size:18px}.archive-delete-dialog{max-width:780px}
+
+/* Manual resend is explicit and only available on the active server table. */
+.penalty-grid-tools .penalty-grid-resend{font-size:14px;background:#fff0d4;border:1px solid #cda867;color:#654411;padding:8px 14px}.role-ja .penalty-grid-resend,.role-setup .penalty-grid-resend{display:none!important}.penalty-grid-resend[hidden]{display:none!important}
+
+/* Stable message composer, independently refreshed receipt list. */
+.messages-dialog{width:min(860px,94vw);max-height:92vh;overflow:auto;color:#102c40;background:#fff}.messages-dialog form{display:grid;gap:12px;padding:16px;background:#edf4f8;border-radius:12px}.messages-dialog label{display:grid;gap:6px;font-weight:600}.messages-dialog textarea{width:100%;box-sizing:border-box;font:inherit;padding:12px;resize:vertical;min-height:100px}.messages-dialog select{width:100%;max-width:100%}.messages-dialog button[type=submit]{background:#144e65;color:white;justify-self:start;padding:12px 22px}.messages-history{max-height:38vh;overflow:auto}.message-card{border:1px solid #c4d2dd;border-left:5px solid #7190a3;border-radius:8px;padding:12px;margin:10px 0}.message-card>p{white-space:pre-wrap;overflow-wrap:anywhere}.message-card>strong,.message-state{display:block}.message-state{font-weight:600;margin:6px 0;color:#4f6271}.message-stage-1{border-left-color:#e13c3c}.message-stage-2{border-left-color:#dbac12}.message-stage-3{border-left-color:#3b9660}.message-card details p{margin:5px 0}.messages-feedback{margin:0;white-space:pre-wrap}
+
+/* Explicit chrono transmission, separate from source timing and penalties. */
+.chrono-transmission{padding:12px;margin:10px 0;border:1px solid #b7ccd9;border-radius:10px;background:#edf5f9}.chrono-send-actions{display:flex;gap:12px;flex-wrap:wrap}.chrono-send-actions button{padding:12px 16px}.chrono-send-actions button:last-child,.chrono-send-confirm{background:#174e65;color:#fff}.chrono-send-feedback{font-weight:600}.chrono-send-dialog{width:min(760px,92vw);max-height:90vh;overflow:auto}.chrono-send-preview{max-height:36vh;overflow:auto;margin:12px 0}.chrono-send-excluded{color:#925a14}.chrono-results input[type=checkbox]{width:22px;height:22px;cursor:pointer}.chrono-send-dialog button{margin:8px 8px 0 0}
+
+/* Course setup is kept outside the live judging sheets. */
+.course-gate-plaques{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:16px 0}.course-gate-plaque{background:repeating-linear-gradient(0deg,#16884b 0 18px,#fff 18px 26px);color:#102c40;font-weight:700;font-size:22px;min-height:66px;text-shadow:0 0 4px white;border:2px solid #176b43}.course-gate-plaque.red{background:repeating-linear-gradient(0deg,#e95252 0 18px,#fff 18px 26px);border-color:#a92525}.course-post-row{display:grid;grid-template-columns:auto 70px minmax(100px,1fr) auto;gap:10px;align-items:center;margin:10px 0}.course-post-row input{min-width:0;width:100%;box-sizing:border-box}.course-setup-dialog button{margin:6px 8px 6px 0}
+
+.course-wizard-actions{position:sticky;bottom:-24px;background:white;display:flex;flex-wrap:wrap;gap:8px;padding:12px 0 4px;border-top:1px solid #d4dee5;z-index:2}.course-wizard-actions button{flex:1 1 180px;min-height:44px;margin:0}.course-setup-dialog h2{margin-top:0}.course-setup-dialog .roster-preview{max-height:100px}
+
+.course-gate-plaque.roll{background:#ffe14b;border-color:#a98700}.door-choice.green{background:#e4f3e8}.door-choice.red{background:#ffdadc}.door-choice.roll{background:#ffe14b}.reassignment-status{font-weight:700;background:#edf3f8;padding:14px;border-radius:10px}
+
+.course-gate-plaque.start{background:#e6eef5;border-color:#46637a;color:#102c40}
+
+.cross-zone-config{display:grid;grid-template-columns:auto 5em minmax(10em,1fr) 5em 6em auto;gap:8px;align-items:center;padding:10px;margin:6px 0;border:1px solid #bdcbd4;border-radius:10px}.cross-zone-config.roll{background:#fff3a6}.cross-zone-config.start{background:#e4f1fa}.cross-zone-config .course-gate-plaque{width:auto;min-width:0;height:44px}.cross-zone-config input{min-width:0;width:100%}@media(max-width:700px){.cross-zone-config{grid-template-columns:auto 4em 1fr}.cross-zone-config>*{min-width:0}}
+
+/* window33: shared Slalom/Cross controls and compact reception/alerts. */
+.course-toolbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0;background:transparent;align-items:stretch}
+.course-group{min-width:0;box-sizing:border-box;padding:12px;border:1px solid #b2cad9;border-radius:10px;background:#e6eff5;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.course-group>label{min-width:0;display:flex;flex-direction:column;gap:6px;font-weight:700}
+.course-group #course-select{box-sizing:border-box;min-width:0;max-width:100%;width:100%}
+.course-group .course-admin{align-self:stretch}.course-group .course-admin summary{text-align:center}.course-group .course-admin-actions{box-sizing:border-box;width:100%;min-width:240px}
+.course-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:center}.course-group button{white-space:normal;text-align:center;margin:0;min-width:0}
+.course-tools button{width:100%}.course-group button:disabled{background:#e3e7ea!important;border-color:#bcc6cd!important;color:#78848c!important;cursor:not-allowed;opacity:1}
+.race-monitor>section{height:190px;box-sizing:border-box;display:flex!important;flex-direction:column;padding:7px 9px!important;overflow:hidden}
+.race-monitor .live-heading{flex:none;margin-bottom:5px;gap:6px}.race-monitor #live-items{flex:1;min-height:0;max-height:115px;overflow:auto;gap:3px}
+.race-monitor #alert-items{flex:1;min-height:0;max-height:140px;overflow:auto}.race-monitor .race-alert{padding:5px;margin:3px 0}.race-monitor .live-summary{flex:none;margin-top:4px;padding-top:0}
+.race-monitor .live-summary .stats{padding-top:4px;gap:3px 12px;font-size:12px}.race-monitor .live-summary .stats b{font-size:16px}.race-monitor .live-summary #race-status{margin:4px 0 0;font-size:11px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.race-monitor #live-feed>details{flex:none;margin-top:4px}.race-monitor #control-receipts{max-height:55px;overflow:auto}.race-monitor .live-item{padding:3px 7px}
+#window-fullscreen{margin-left:auto}.course-toolbar #archive-status:empty{display:none}
+@media(max-width:900px){.course-toolbar{gap:8px}.course-group{padding:8px}.course-actions{grid-template-columns:1fr}.course-group button{font-size:12px;padding:8px}.course-group .course-admin summary{font-size:12px;padding:8px}}
+@media(max-width:620px){.course-toolbar{grid-template-columns:1fr}.course-actions{grid-template-columns:1fr 1fr}}
+@media print{.course-toolbar,#window-fullscreen{display:none!important}}
+
+/* Consistent closing actions, separate from course operations. */
+body dialog.has-dismiss{padding-top:54px}
+body dialog .dialog-close,body dialog .zoom-close{background:#235875;color:#fff;border:1px solid #16435e;min-height:44px;border-radius:9px}
+body dialog .dialog-close:hover,body dialog .zoom-close:hover{background:#16435e;color:#fff}
+body dialog .dialog-close:focus-visible{outline:3px solid #75bfea;outline-offset:3px}
+body dialog .dialog-dismiss{position:absolute;top:8px;right:10px;display:grid;place-items:center;width:40px;height:40px;min-height:40px;margin:0;padding:0;font-size:30px;line-height:1;z-index:5}
+body dialog .dialog-footer{clear:both;display:flex;justify-content:flex-end;margin-top:20px;padding-top:12px;border-top:1px solid #cad9e3}
+.battery-state{white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* Consultation étendue 0.43 : cadres indépendants et compacts. */
+header{padding:14px 22px}header h1{font-size:24px}header p:not(.eyebrow){display:none}
+.course-toolbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:start;gap:12px}.course-group{display:block;min-width:0;padding:0;background:#f2f7fa;border:1px solid #bfd1dd;border-radius:10px;overflow:hidden}.course-group>summary,.monitor-disclosure>summary,.filters-panel>summary{padding:12px 14px;cursor:pointer;font-weight:600;color:#143f55;min-height:44px;box-sizing:border-box}.panel-content{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px}.panel-content>button{flex:1 1 160px;min-height:42px}.panel-content label{width:100%}.course-admin{width:100%}.course-admin-actions{display:flex;flex-wrap:wrap;gap:8px}.course-admin-actions button{flex:1 1 170px}#expand-panels{display:block;margin:8px 0 10px auto;padding:6px 12px;font-size:13px;color:#31566c;background:#edf4f8}.race-monitor{align-items:start;gap:12px;margin:12px 0}#live-feed,#race-alerts{height:auto;min-height:0;max-height:none;padding:0;overflow:hidden;border-radius:10px}.monitor-content{padding:8px 12px;max-height:290px;overflow:auto}.monitor-disclosure:not([open]) .monitor-content{display:none}.live-summary .stats{margin:8px 0}.live-summary .notice{margin:6px 0;font-size:12px}#server-course-guide{display:none}.filters-panel{margin:12px 0;background:#edf4f8;border:1px solid #bfd1dd;border-radius:10px}.filters-panel .toolbar{margin:0;border:0}.information-table{width:100%;border-collapse:collapse;font-size:13px}.information-table th,.information-table td{padding:7px 8px;text-align:left;border-bottom:1px solid #cfdae2;overflow-wrap:anywhere}.information-table th{color:#31566c;background:#eaf2f7}.information-table .live-item{display:table-row;background:transparent;text-align:left}.information-table .live-item:hover{background:#e2eef6;cursor:pointer}.information-table .race-alert{display:table-row}.information-table button{padding:5px 10px}.information-table .live-value{padding:2px 7px;border-radius:4px}.gate-number-red{color:#c61b24!important}.gate-number-green{color:#087b36!important}button.zoom-close{background:#24566f!important;color:white!important;border-color:#24566f!important}.role-ja .course-data,.role-ja .course-tools,.role-ja #race-alerts,.role-ja #expand-panels{display:none!important}.role-ja .course-toolbar{grid-template-columns:1fr 1fr}.role-ja #recover-course{display:inline-block!important}.role-ja .course-toolbar #live-feed{min-width:0;margin:0}.role-ja #live-feed>details{display:block!important}.role-ja #live-feed .monitor-content>details{display:none!important}.role-ja .race-monitor:empty{display:none}.role-ja .course-actions .panel-content{display:grid;grid-template-columns:1fr 1fr}.filters-panel:has(.toolbar[hidden]){display:none}
+@media(max-width:800px){.course-toolbar,.role-ja .course-toolbar{grid-template-columns:1fr}.panel-content>button{flex-basis:45%}}
+@media print{.course-toolbar,.race-monitor,.filters-panel,#expand-panels{display:none!important}}
+
+.course-group .course-admin-actions{position:static;flex-direction:row;min-width:0;box-shadow:none;padding:8px 0 0;border:0;background:transparent}.course-group .course-admin-actions button{flex:1 1 170px;min-height:42px}#live-items{max-height:none}.monitor-disclosure.has-alerts>summary{background:#fff1d7;color:#784b0b}
+
+/* layout43d: native compact disclosures, consistent buttons, full phone status. */
+.course-actions>.panel-content{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-content:start}
+.course-actions>.panel-content>button{display:flex;align-items:center;justify-content:center;gap:7px;box-sizing:border-box;width:100%;height:44px;min-height:44px;max-height:44px;min-width:0;max-width:none;padding:5px 8px;font-size:13px;line-height:16px;margin:0;white-space:normal;overflow:hidden}
+.course-actions>.panel-content>button .action-icon{width:18px;height:18px;flex:0 0 18px;margin:0}.course-actions>.panel-content>button .action-label{min-width:0}
+.course-rescue{flex-basis:100%;width:100%;border-top:1px solid #b9cbd7;padding-top:8px}.course-rescue p{font-size:13px;line-height:1.4;color:#425f71}.course-admin .course-rescue summary{text-align:left;font-size:13px;background:#f3f7fa}
+.phone-control-dialog{box-sizing:border-box;width:calc(100vw - 48px);max-width:1720px;max-height:calc(100vh - 48px);padding:24px;background:#1c3343;color:#e7f0f7;border:1px solid #4b687b;border-radius:14px;overflow:auto}
+.phone-control-dialog h2{color:#e7f0f7;margin:4px 70px 24px 0;font-size:28px}.phone-control-dialog [role=alert]{color:#ffd3c9}.phone-control-scroll{overflow:auto;max-height:65vh;border:1px solid #4b687b}
+.phone-control-table{border-collapse:separate;border-spacing:0;width:100%;min-width:1120px;table-layout:auto;font-size:13px;line-height:1.45}.phone-control-table th,.phone-control-table td{padding:12px 10px;text-align:left;border-right:1px solid #4b687b;border-bottom:1px solid #4b687b;vertical-align:middle;overflow-wrap:anywhere}.phone-control-table thead th{position:sticky;top:0;z-index:1;background:#2a4759;color:#f0f7fb;font-weight:600}.phone-control-table tbody tr{background:#1c3343}.phone-control-table tbody tr:nth-child(even){background:#203b4d}.phone-control-table tbody tr:hover{background:#294b60}.phone-control-table td:first-child{font-size:18px;font-weight:600;text-align:center;min-width:38px}.phone-control-table td:nth-child(2){min-width:100px;font-size:15px}.phone-control-table td:nth-child(4){min-width:90px}.phone-control-table td:nth-child(5){min-width:80px}.phone-control-table td:nth-child(6){white-space:normal;min-width:92px}.phone-control-table td:last-child{min-width:142px}.phone-control-table button{display:block;box-sizing:border-box;max-width:100%;width:100%;min-height:34px;padding:7px 9px;margin:0;background:#1c3343;color:#edf6fb;border:1px solid #6a8a9e;border-radius:9px;font-size:13px;white-space:normal}.phone-control-table button:hover{background:#315d74}.phone-control-table .phone-details{margin-top:6px;font-size:12px;min-height:28px;padding:4px 7px;color:#a9d2ea}.phone-control-table button:disabled{opacity:.55;cursor:default}.phone-control-dialog .dialog-footer{display:flex;justify-content:flex-end;margin-top:16px}.phone-control-dialog .dialog-close,.phone-control-dialog .dialog-top-close{background:#82bce0!important;color:#102c40!important;border-color:#82bce0!important}.phone-control-notice{font-size:14px;color:#d3e3ef;margin:18px 0 0}.phone-control-table .phone-offline td:nth-child(5){color:#bed0dd}
+@media(max-width:900px){.phone-control-dialog{width:calc(100vw - 20px);padding:18px}.phone-control-dialog h2{font-size:23px}}
+
+.phone-control-table{min-width:1280px}.phone-control-table td:nth-child(11){min-width:140px}.phone-control-table tr.phone-warning,.phone-control-table tr.phone-warning:nth-child(even){background:#504329}.phone-control-table tr.phone-error,.phone-control-table tr.phone-error:nth-child(even){background:#58353c}.phone-control-table .phone-pending{box-shadow:inset 0 -3px #e9b64e}.phone-control-table tr.phone-warning:hover{background:#625333}.phone-control-table tr.phone-error:hover{background:#6a4149}.phone-control-stamp{font-size:13px;color:#bcd3e2}.course-tools #control-phones.technical-warning{background:#fff1d4;color:#6c4713;border-color:#d8ae50}.phone-control-dialog .dialog-dismiss{background:#82bce0!important;color:#102c40!important;border-color:#82bce0!important}
+
+.phone-control-dialog[open]{display:flex;flex-direction:column}.phone-control-dialog>h2,.phone-control-dialog>.phone-control-stamp,.phone-control-dialog>.phone-control-notice,.phone-control-dialog>.dialog-footer{flex:none}.phone-control-scroll{flex:1;min-height:140px;max-height:none}.phone-control-table{font-size:14px;min-width:1540px}.phone-control-table th{white-space:nowrap;overflow-wrap:normal}.phone-control-table td{overflow-wrap:normal}.phone-control-table td:first-child,.phone-control-table th:first-child{position:sticky;left:0;background:inherit;z-index:2;min-width:62px}.phone-control-table td:last-child,.phone-control-table th:last-child{position:sticky;right:0;background:inherit;z-index:2;box-shadow:-4px 0 8px #10202b55;min-width:152px}.phone-control-table thead th:first-child,.phone-control-table thead th:last-child{background:#2a4759;z-index:3}.phone-control-table thead tr{background:#2a4759}.phone-control-scroll-help{font-size:12px;color:#bcd3e2;margin:8px 0 0;flex:none}.phone-control-dialog h2{margin-bottom:12px}.phone-control-dialog .dialog-footer{flex:none;margin-top:12px}.phone-control-dialog .dialog-footer .dialog-close{min-height:36px;padding:7px 20px}.phone-control-scroll::-webkit-scrollbar{height:11px;width:11px}.phone-control-scroll::-webkit-scrollbar-thumb{background:#769cb4;border:2px solid #233d50;border-radius:8px}.phone-control-scroll::-webkit-scrollbar-track{background:#233d50}
+
+.phone-control-dialog>p[role=alert]:empty,.phone-control-dialog>.consultation-update[hidden],.phone-control-dialog>.phone-control-empty[hidden]{display:none!important}.phone-control-dialog>.phone-control-stamp{margin:4px 0 12px}
+
+/* layout43g: JA reception contains one table, using the entire frame width. */
+.role-ja #live-items{display:block;width:100%;max-height:none}.role-ja #live-items>.information-table{width:100%}
+
+/* layout43h: keep the alert acknowledgement label on a single line. */
+.alerts-table th:last-child{width:80px}.alerts-table td:last-child{white-space:nowrap}.alerts-table button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:64px;min-height:32px;padding:6px 10px;white-space:nowrap;word-break:normal;overflow-wrap:normal;line-height:1.2}.alerts-table button .action-label{white-space:nowrap}
+
+/* layout43i: remove the unused space above the course panels. */
+main{padding-top:10px}.course-toolbar{margin-top:0}
+#fullscreen-status{font-size:12px;color:#31566c;padding:4px 10px;max-width:400px}#fullscreen-status[hidden]{display:none!important}
+
+/* layout43j: first-line phone title and a larger scrolling body. */
+body dialog.phone-control-dialog.has-dismiss{height:calc(100vh - 24px);max-height:calc(100vh - 24px);padding-top:10px;padding-bottom:12px}
+.phone-control-dialog>h2{margin:0 58px 4px 0;min-height:40px;line-height:40px;align-content:center}.phone-control-dialog>.phone-control-stamp{margin:0 0 8px}.phone-control-dialog>.phone-control-notice{margin-top:8px}.phone-control-dialog>.dialog-footer{margin-top:8px;padding-top:8px}.phone-control-scroll{min-height:0}
+/* Chrono list fits its dialog, with or without the server selection column. */
+.chrono-dialog{width:calc(100vw - 32px);max-width:1200px;box-sizing:border-box}.chrono-dialog .chrono-table{width:100%;max-width:100%;min-width:0;container-type:inline-size}.chrono-results{width:100%;min-width:0;table-layout:fixed}.chrono-results .chrono-col-select{width:44px}.chrono-results .chrono-col-bib{width:9%}.chrono-results .chrono-col-start,.chrono-results .chrono-col-finish{width:22%}.chrono-results .chrono-col-elapsed{width:25%}.chrono-results .chrono-col-info{width:76px}.chrono-results td,.chrono-results th{min-width:0;padding:8px 6px}.chrono-results .chrono-clock{font-size:clamp(10px,1.6cqw,18px);white-space:nowrap}.chrono-results .chrono-elapsed{font-size:clamp(16px,2.7cqw,30px);white-space:nowrap}.chrono-dialog .chrono-info-button.with-action-icon{min-width:0;max-width:100%;width:100%;min-height:32px;font-size:12px;line-height:1.2;padding:5px 2px;gap:4px;margin:0}.chrono-dialog .chrono-info-button .action-icon{width:16px;height:16px;flex:0 0 16px;margin:0}.chrono-dialog .chrono-info-button .action-label{min-width:0}.chrono-results th{font-size:13px;overflow-wrap:normal}.chrono-results input[type=checkbox]{width:20px;height:20px;margin:0}.chrono-dialog .chrono-send-actions>button{max-width:100%;min-width:0;white-space:normal}
+@media(max-width:650px){.chrono-results .chrono-col-select{width:34px}.chrono-results .chrono-col-info{width:40px}.chrono-dialog .chrono-info-button .action-label{display:none}.chrono-results td,.chrono-results th{padding:7px 3px}.chrono-results th{font-size:11px}.chrono-results .chrono-bib{font-size:16px}.phone-control-dialog>h2{font-size:22px}}
+
+/* layout43k: compact full-height chrono consultation, without changing send controls. */
+body dialog.chrono-dialog.has-dismiss{height:calc(100vh - 24px);max-height:calc(100vh - 24px);padding:10px 18px 12px;overflow:hidden}
+.chrono-dialog[open]{display:flex;flex-direction:column}
+.chrono-dialog>h2{flex:none;margin:0 58px 4px 0;min-height:40px;line-height:1.3;display:flex;align-items:center;font-size:24px}
+.chrono-dialog>input[type=search]{flex:none;box-sizing:border-box;height:34px;padding:6px 10px;margin:0 0 6px;font-size:14px}
+.chrono-dialog .chrono-transmission{flex:none;padding:6px 8px;margin:0 0 6px}
+.chrono-dialog .chrono-send-actions{gap:6px}
+.chrono-dialog .chrono-send-actions>button{margin:0;min-height:32px;padding:6px 10px;font-size:12px;line-height:1.2}
+.chrono-dialog .chrono-transmission p{margin:4px 0 0;font-size:12px;line-height:1.3}
+.chrono-dialog .chrono-send-feedback:empty,.chrono-dialog>p:empty,.chrono-dialog .role-alert:empty{display:none}
+.chrono-dialog .chrono-table{flex:1;min-height:0;max-height:none;margin:0 0 8px;overflow:auto}
+.chrono-results td,.chrono-results th{padding:4px 6px}
+.chrono-results th{position:sticky;top:0;z-index:2;background:#e5eff5;font-size:12px}
+.chrono-results .chrono-clock{font-size:clamp(10px,1.25cqw,15px)}
+.chrono-results .chrono-elapsed{font-size:clamp(14px,1.7cqw,20px)}
+.chrono-results .chrono-bib{font-size:16px}
+.chrono-dialog .chrono-info-button.with-action-icon{min-height:26px;font-size:11px;padding:3px 2px}
+.chrono-dialog .chrono-info-button .action-icon{width:14px;height:14px;flex-basis:14px}
+.chrono-dialog>button.zoom-close{flex:none;align-self:flex-end;min-height:34px;padding:6px 18px;margin:0}
+.phone-control-dialog>.phone-control-notice[hidden]{display:none}
+@media(max-width:650px){.chrono-dialog>h2{font-size:19px}.chrono-results td,.chrono-results th{padding:4px 3px}}
+
+/* Distinguish the primary CompetFFCK resend from the optional Manager copy. */
+.chrono-dialog .chrono-send-actions>button:nth-child(2){background:#174e65;color:#fff;border-color:#174e65}
+.chrono-dialog .chrono-send-actions>button:last-child{margin-left:auto;background:#eef3f6;color:#4c6575;border:1px solid #bccbd4;font-size:11px}
+
+.chrono-results tr:has(td):nth-of-type(even){background:#fff}
+.chrono-results tr:has(td):nth-of-type(odd){background:#e9f2f8}
+.chrono-results tr:has(td):nth-of-type(even) .chrono-elapsed{background:#f1f7fa}
+.chrono-results tr:has(td):nth-of-type(odd) .chrono-elapsed{background:#dcecf5}
+
+.chrono-dialog .chrono-send-actions>button.chrono-continuous-active{background:#fbe0df;color:#8d2525;border:1px solid #e4a3a0}
+.chrono-continuous-active .action-icon{fill:currentColor}
+
+/* interface44c: aligned table controls and a single scrolling area. */
+.penalty-grid-tools .penalty-grid-resend,.penalty-grid-tools .penalty-grid-manager{width:240px;max-width:100%;height:42px;min-height:42px;padding:8px 12px;font-size:14px;font-weight:400;line-height:1.2;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.penalty-grid-tools .penalty-grid-resend[hidden],.penalty-grid-tools .penalty-grid-manager[hidden]{display:none!important}
+.penalty-grid-tools .penalty-grid-manager{margin-left:auto;background:#eef3f6;color:#4c6575;border:1px solid #bccbd4}
+.penalty-grid-tools .penalty-grid-manager:hover{background:#dfe9ef}
+.penalty-grid-tools .penalty-grid-resend .action-icon,.penalty-grid-tools .penalty-grid-manager .action-icon{width:16px;height:16px;flex:0 0 16px}
+.penalty-grid-tools select,.penalty-grid-tools .penalty-page-arrow{height:42px;min-height:42px}
+.penalty-grid-tools .penalty-page-arrow{width:44px;padding:0;display:inline-flex;align-items:center;justify-content:center;line-height:1}
+.penalty-grid-tools .penalty-grid-status{flex-basis:100%;padding-bottom:0}
+html.penalty-table-page,html.penalty-table-page body{height:100%;overflow:hidden}
+.penalty-grid-window main{height:100vh;height:100dvh;overflow:hidden}
+.penalty-grid-window .penalty-window-root{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.penalty-window-root>h2,.penalty-window-root>p,.penalty-window-root>.penalty-grid-tools,.penalty-window-root>.penalty-sector-legend{flex:none}
+.penalty-grid-window .penalty-window-root>.penalty-grid-scroll{flex:1;min-height:0;max-height:none;overflow:auto}
+.penalty-window-root>.penalty-grid-tools{margin:10px 0}
+
+@media print{html.penalty-table-page,html.penalty-table-page body,.penalty-grid-window main,.penalty-grid-window .penalty-window-root{height:auto!important;overflow:visible!important}.penalty-grid-window .penalty-window-root>.penalty-grid-scroll{flex:none;max-height:none!important;height:auto;overflow:visible}}
+
+/* interface44d: highlight the two consultation windows without resizing actions. */
+.course-actions #show-chronos,.course-actions #show-penalty-grid{background:#174e65;color:#fff;border-color:#174e65}
+.course-actions #show-chronos:hover,.course-actions #show-penalty-grid:hover{background:#103e53}
+.course-actions #show-chronos:disabled,.course-actions #show-penalty-grid:disabled{background:#e5ebef;color:#70828e;border-color:#c6d1d8;opacity:1;cursor:default}
+
+.penalty-grid-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex:none;min-width:0;flex-wrap:wrap}
+.penalty-grid-heading h2{margin:0;font-size:24px}
+.penalty-grid-heading>p{margin:0 0 0 auto;text-align:right;font-size:14px;line-height:1.4}
+
+/* interface44f: direct archive return available to both Server and JA. */
+#active-course-title .archive-return{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:100%;padding:10px 14px;background:#a52e3b;border:1px solid #e798a1;border-radius:9px;color:#fff;white-space:normal;text-align:center;box-shadow:0 2px 5px #0002}
+#active-course-title .archive-return:hover{background:#8d2230}
+#active-course-title .archive-return-name{font-size:19px;font-weight:700;line-height:1.25}
+#active-course-title .archive-return-action{display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:600;line-height:1.25}
+.archive-return-icon{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round}
+
+body:not(.role-ja) #recover-course{display:none!important}
+
+.chrono-results .chrono-capsize,.chrono-technical .chrono-capsize{background:#fbe0df;color:#8d2525;font-size:16px;font-weight:600;text-align:center}
+
+.live-roster-import{padding:12px;border:1px solid #b7ccd9;border-radius:9px;background:#edf5f9}.live-roster-import h4{margin:0 0 8px}.live-roster-import p{font-size:14px;line-height:1.4}.live-roster-endpoint{display:grid;grid-template-columns:minmax(0,1fr) 140px;gap:10px}.live-roster-endpoint label{min-width:0}.live-roster-endpoint input{box-sizing:border-box}.live-roster-preview .roster-preview{max-height:180px;overflow:auto}.live-roster-tt{display:flex;flex-direction:row;align-items:center;gap:8px;font-size:14px}.live-roster-tt input{width:22px;height:22px}.session-dialog .live-roster-accept{background:#174e65;color:#fff}.live-roster-status:empty{display:none}.live-roster-pce{margin:14px 0}.live-roster-pce summary{cursor:pointer;padding:8px;color:#31566c}
+
+.post-reuse-status{font-size:14px;line-height:1.4;margin:6px 0 10px;color:#526876}.post-reuse-success{background:#e5f3e9;color:#245b38;border-radius:6px;padding:9px 12px}.session-dialog .post-reuse:disabled{background:#e7ecef;color:#75838d;border:1px solid #c8d1d8;opacity:1;cursor:not-allowed}
+
+/* interface45c: expose the next step immediately after planning validation. */
+.course-ready-next{position:sticky;top:0;z-index:3;margin:10px 0 16px;padding:12px;background:#e5f3e9;border:1px solid #95bea3;border-radius:8px;box-shadow:0 3px 8px #173f2420}
+.course-ready-next>strong{display:block;margin-bottom:8px;color:#245b38;font-size:15px}
+.session-dialog .course-prepare-notify{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;margin:0;padding:10px 16px;background:#18754b;color:white;border:1px solid #105d3b;font-size:16px;font-weight:700;line-height:1.3}
+.session-dialog .course-prepare-notify:hover{background:#105d3b}
+
+/* interface45d: one consistent top action for every course-creation step. */
+.course-step-actions{display:flex;flex-direction:column;gap:8px}
+.course-creation-dialog .course-step-primary{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;margin:0;padding:10px 16px;background:#18754b;color:#fff;border:1px solid #105d3b;border-radius:6px;font-size:16px;font-weight:700;line-height:1.3}
+.course-creation-dialog .course-step-primary:hover{background:#105d3b}
+.course-creation-dialog .course-step-primary:disabled{background:#e3e9e6;color:#728078;border-color:#c2ccc6;opacity:1;cursor:not-allowed}
+.course-creation-dialog .course-ready-next{flex:none}
+
+/* interface45e: illustrated help next to the WebSocket address. */
+.websocket-address-label{display:flex;align-items:center;justify-content:space-between;min-height:26px}
+.session-dialog .websocket-help-button{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;min-height:26px;flex:none;padding:0;margin:0 0 0 8px;border-radius:50%;border:1px solid #8cb0c7;background:#dcebf5;color:#174e65;font-size:16px;font-weight:700;line-height:1}
+.session-dialog .websocket-help-button:hover{background:#c3deef}
+.websocket-address-help{max-width:950px}.websocket-address-help figure{margin:0}.websocket-help-visual svg{display:block;width:100%;height:auto}.websocket-address-help figcaption{font-size:13px;color:#526876;margin:8px 0 16px}.websocket-help-guide{font-size:15px;line-height:1.5}.websocket-help-guide h3{font-size:17px;margin-bottom:6px}.websocket-help-guide li{margin:8px 0}.websocket-help-port{background:#e6f0f7;border:1px solid #bdcfde;border-radius:7px;padding:10px 12px}.websocket-help-footer{position:sticky;bottom:-24px;padding:8px 0 0;background:#fff;display:flex;justify-content:flex-end}
+
+.phone-control-table td.phone-battery-low{background:#ffe36b!important;color:#302600!important;font-weight:700;box-shadow:inset 0 0 0 2px #dfad19}.control-alert-indicator{color:#d92335;font-size:22px;margin-left:10px;line-height:1;vertical-align:middle}.control-alert-indicator[hidden]{display:none}
+
+#compet-settings.compet-resume-required,.session-dialog button.compet-resume-required{background:#b92d3b!important;color:#fff!important;border-color:#94212d!important}#compet-settings.compet-resume-required:hover,.session-dialog button.compet-resume-required:hover{background:#a12431!important}
+
+.course-data>summary>.control-alert-indicator,.course-tools>summary>.control-alert-indicator{float:right;margin-left:10px;margin-right:0}
+
+/* Shared help buttons and a gentle double heartbeat for unresolved alerts. */
+.session-dialog .websocket-help-button{box-sizing:border-box;min-width:26px;max-width:26px;max-height:26px;aspect-ratio:1;vertical-align:middle}
+.control-alert-indicator:not([hidden]){display:inline-block;transform-origin:center;animation:control-alert-heartbeat 1.8s ease-in-out infinite}
+@keyframes control-alert-heartbeat{0%,40%,100%{transform:scale(1);opacity:.78}10%,26%{transform:scale(1.2);opacity:1}18%{transform:scale(1.04);opacity:.9}}
+@media(prefers-reduced-motion:reduce){.control-alert-indicator:not([hidden]){animation:none;opacity:1}}
+
+/* 0.47: one checkout step at a time, validation after its fields. */
+.course-creation-dialog .course-ready-next{position:static;background:#edf4f8;border-color:#bbd0de;box-shadow:none;margin:4px 0 16px}
+.course-creation-dialog .course-ready-next>strong{color:#174e65;margin:0}
+.creation-step-progress{display:flex;flex-wrap:wrap;gap:5px 12px;list-style:none;padding:0;margin:0 0 12px;color:#728591;font-size:11px}.creation-step-progress .current{color:#123f57;font-weight:700}.creation-step-progress .complete{color:#32714f}
+.creation-checkout-footer{position:sticky;bottom:-24px;background:#fff;border-top:1px solid #cedce6;padding:12px 0 0;margin-top:18px;z-index:4}
+.creation-checkout-navigation{display:flex;gap:12px;align-items:stretch}.creation-checkout-navigation>.course-step-actions{flex:1;display:flex;flex-direction:column;gap:8px}.course-creation-dialog .creation-back{min-height:48px;margin:0;background:#e4edf4;color:#163d54;flex:0 0 125px}
+.creation-checkout-secondary{display:flex;justify-content:space-between;gap:8px}.creation-checkout-secondary button{font-size:12px;padding:8px 10px}.creation-review{display:grid;grid-template-columns:110px 1fr;gap:12px}.creation-review dt{font-weight:700;color:#254d64}.creation-review dd{margin:0}
+
+/* 0.48: manual reader order; preserve the 0.47 checkout flow. */
+.sheet-order-picker{display:flex;gap:8px;align-items:center;margin-left:auto;font-size:12px;color:#37586d}.sheet-order-picker select{padding:8px 10px;background:#e7f0f6;color:#153f56;border:1px solid #afc8d8;border-radius:6px;font-size:14px;min-height:38px}
+.live-roster-endpoint label>.websocket-address-label{min-height:26px}.session-dialog .roster-table-scroll,.live-roster-preview .roster-table-scroll,.course-setup-dialog .roster-table-scroll{columns:auto;padding:0;max-height:300px;overflow-y:auto;overflow-x:hidden;background:#fff;border:1px solid #becfda;border-radius:6px}
+.creation-roster-table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:14px}.creation-roster-table th,.creation-roster-table td{padding:8px 10px;text-align:left;overflow-wrap:anywhere;border-bottom:1px solid #d5dfe6}.creation-roster-table th{position:sticky;top:0;background:#244d64;color:#fff;z-index:1;font-size:13px}.creation-roster-table th:nth-child(1){width:12%}.creation-roster-table th:nth-child(2){width:18%}.creation-roster-table th:nth-child(3){width:30%}.creation-roster-table th:nth-child(4){width:40%}.creation-roster-table td{background:var(--roster-tone)}.creation-roster-table .roster-category-start td{border-top:2px solid var(--roster-divider)}.creation-roster-table td:nth-child(1),.creation-roster-table td:nth-child(2){font-variant-numeric:tabular-nums}.creation-roster-table td:nth-child(4){white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* 0.49: one direct column of administration actions. */
+.course-data>.panel-content{display:block}.course-data .course-admin-actions{display:flex;flex-direction:column;gap:8px;padding:0;width:100%;min-width:0}
+.course-data .course-admin-actions>button{box-sizing:border-box;display:flex;align-items:center;justify-content:center;flex:none;width:100%;height:48px;min-height:48px;margin:0;padding:8px 12px;border:1px solid #afc6d5;border-radius:6px;background:#e3edf4;color:#173f55;font-size:14px;font-weight:600;line-height:1.2;white-space:normal}
+.course-data .course-admin-actions>button:hover{background:#d2e4f0}.course-data .course-admin-actions>button:disabled{opacity:.55}.course-tools .course-rescue{margin-top:4px}.activation-force-choice{display:flex!important;gap:10px;align-items:center;padding:12px;background:#fff0d9;border:1px solid #dec38f;border-radius:7px}.activation-force-choice input{flex:none}.activation-force-note{font-size:13px;color:#6a512d}
+.course-data .course-admin-actions>#new-race,.course-data .course-admin-actions>#manage-archives{margin:0;background:#e3edf4;color:#173f55;border-color:#afc6d5}.course-data .course-admin-actions>#new-race:hover,.course-data .course-admin-actions>#manage-archives:hover{background:#d2e4f0}
+
+/* interface49b: dark panel headers and a visible unfinished creation. */
+.course-toolbar .course-group>summary{background:#102c40;color:#fff}.course-toolbar .course-group>summary:hover{background:#183e56}
+.course-data .course-admin-actions>#new-race.course-creation-pending{background:#b92d3b;color:#fff;border-color:#94212d}.course-data .course-admin-actions>#new-race.course-creation-pending:hover{background:#a12431}
+
+/* interface49c: consistent action columns, original CompetFFCK icon. */
+.course-toolbar .course-actions>.panel-content,.course-toolbar .course-tools>.panel-content{display:flex!important;flex-direction:column;gap:8px;align-items:stretch}
+.course-toolbar .course-actions>.panel-content>button,.course-toolbar .course-tools>.panel-content>button{box-sizing:border-box;display:flex;align-items:center;justify-content:center;flex:none;width:100%;height:48px;min-height:48px;max-height:48px;margin:0;padding:8px 12px;border:1px solid #afc6d5;border-radius:6px;background:#e3edf4;color:#173f55;font-size:14px;font-weight:600;line-height:1.2;white-space:normal}
+.course-toolbar .course-actions>.panel-content>button:hover,.course-toolbar .course-tools>.panel-content>button:hover{background:#d2e4f0}
+.course-toolbar .course-actions #show-chronos,.course-toolbar .course-actions #show-penalty-grid{background:#174e65;color:#fff;border-color:#174e65}
+.course-toolbar .course-actions #show-chronos:hover,.course-toolbar .course-actions #show-penalty-grid:hover{background:#103e53}
+.course-toolbar .course-tools #control-phones.technical-warning{background:#fff1d4;color:#6c4713;border-color:#d8ae50}
+.course-data>.panel-content>.course-rescue{width:100%;box-sizing:border-box;margin-top:8px}
+.compet-logo{filter:grayscale(1) sepia(.35) saturate(2) hue-rotate(155deg);width:24px;height:24px;flex:none}
+
+.course-toolbar .course-actions #open-protection{font-size:14px;padding:8px 12px}
+.course-toolbar #consultation-toggle[aria-pressed=true]{background:#fff0c0;border-color:#c69b35;color:#634608}
+.course-toolbar .course-actions>.panel-content>button .action-icon{width:21px;height:21px;flex:0 0 21px}
+
+/* interface49d: reserved status line; notices never shift the course view. */
+#deployment-bar{flex-wrap:nowrap;gap:12px}
+#deployment-bar #deployment-role{display:none}
+#temporary-communications{flex:1;min-width:0;height:48px;overflow:auto;scrollbar-width:thin;display:flex;flex-direction:column;justify-content:flex-start}
+#temporary-communications #deployment-state{display:none;flex:none}
+#deployment-bar.offline #deployment-state,.role-setup #temporary-communications #deployment-state{display:block}
+#temporary-communications>#consultation-status,#temporary-communications>#ja-command-status,#temporary-communications>#session-notice,#temporary-communications>#fullscreen-status,#temporary-communications>#deployment-state{position:static;box-sizing:border-box;flex:none;min-height:40px;margin:0;padding:5px 8px;border:0;border-radius:0;background:transparent;box-shadow:none;font-size:13px;line-height:1.3;align-items:center;color:#173f55}
+#temporary-communications>#consultation-status{display:flex;gap:10px;justify-content:flex-start;flex-wrap:nowrap}
+#temporary-communications>#consultation-status[hidden],#temporary-communications>#ja-command-status[hidden],#temporary-communications>#session-notice[hidden],#temporary-communications>#fullscreen-status[hidden]{display:none!important}
+#temporary-communications #consultation-message{min-width:0}
+#temporary-communications #consultation-apply{flex:none;width:auto;font-size:12px;white-space:nowrap}
+#deployment-bar>#deployment-settings,#deployment-bar>#window-fullscreen{flex:none;margin:0}
+.filters-panel>summary{background:#102c40;color:#fff;border-color:#102c40}
+.filters-panel>summary:hover{background:#183e56}
+
+/* interface49e: creation keeps its footer actions without a duplicate cross. */
+body dialog.course-creation-dialog{padding-top:10px}
+body dialog.course-creation-dialog>h2{margin-top:0}
+
+/* interface49f: secondary refresh of the roster preview. */
+.course-creation-dialog .live-roster-reread{display:inline-flex;align-items:center;gap:6px;width:auto;min-height:32px;margin:8px 0;padding:5px 10px;border:1px solid #b7cbd8;border-radius:6px;background:#edf3f7;color:#31566c;font-size:13px;font-weight:400}
+.course-creation-dialog .live-roster-reread:hover{background:#dce9f2}
+.course-creation-dialog .live-roster-reread[hidden]{display:none}
+.course-creation-dialog .live-roster-reread .action-icon{width:16px;height:16px;min-width:16px}
+
+/* interface49g: load and verify share a single visible step. */
+.course-creation-dialog .creation-discipline-banner{display:block;padding:12px 14px;margin:8px 0 12px;background:#dcecf5;border:1px solid #9dbbce;border-radius:7px;color:#153e55;font-size:18px;font-weight:700}
+.course-creation-dialog .creation-discipline-banner select{font-size:17px;font-weight:600;margin:6px 0 0}
+.creation-change-source{margin:8px 0 14px}.creation-change-source>summary{cursor:pointer;color:#31566c;font-size:13px}
+
+.course-creation-dialog .creation-discipline-banner[hidden]{display:none}
+
+/* Post piles fit the available width, wrapping only when needed. */
+.pile-overview,.pile-sidebar{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:18px;overflow:visible;padding:10px 8px 12px 0;align-items:stretch;min-width:0;max-width:100%;box-sizing:border-box}
+.pile-overview>.post-pile,.pile-sidebar>.post-pile{min-width:0;width:100%;box-sizing:border-box;margin-bottom:0;overflow-wrap:anywhere}
+.pile-workspace{display:flex;flex-direction:column;gap:16px}.pile-workspace>.pile-sidebar{width:100%;box-sizing:border-box}.pile-workspace>.pile-reader{width:100%;box-sizing:border-box}
+
+/* Print sheet budget: 194mm printable height, with reserve for borders. */
+@media print{
+ @page{size:A4 landscape;margin:8mm}
+ #sheets>div{margin:0;padding:0} .filters-panel,.race-monitor{display:none!important}
+ .ffck-sheet.matrix-sheet{height:190mm!important;max-height:190mm;overflow:hidden;margin:0!important;padding:0!important;--diagram-height:35mm;--notes-height:17mm}
+ .ffck-sheet.matrix-sheet[data-gates="4"]{--diagram-height:26mm;--notes-height:13mm}
+ .ffck-sheet.matrix-sheet[data-gates="5"]{--diagram-height:21mm;--notes-height:10mm}
+ .ffck-sheet.matrix-sheet[data-gates="2"]{--diagram-height:52mm;--notes-height:26mm}
+ .ffck-sheet.matrix-sheet[data-gates="1"]{--diagram-height:90mm;--notes-height:45mm}
+ .ffck-sheet .sheet-header{height:18mm;min-height:18mm;max-height:18mm;margin:0 0 1mm!important;padding:0 0 1mm!important}
+ .ffck-grid tbody.ffck-door-pair>tr{min-height:0!important}
+ .ffck-grid .ffck-diagram-content .picture{container-type:inline-size}
+ .ffck-grid .ffck-diagram-content .pen{font-size:5pt;font-size:min(12cqw,8pt);line-height:1;padding:0;white-space:nowrap;overflow:hidden;min-width:0;font-weight:700}
+ .ffck-sheet,.ffck-sheet *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+@media print{.ffck-grid thead tr,.ffck-grid thead td.ffck-corner{height:6mm!important;min-height:0!important;max-height:6mm!important}}
+/* Violet post piles, with a stronger active state. */
+.post-pile{background:#eee8fa;border-color:#ac96ce;color:#45266b}.post-pile:before{background:#e0d4f2;border-color:#ac96ce}.post-pile:after{background:#e8def6;border-color:#ac96ce}.post-pile:hover,.post-pile.selected{background:#e2d5f4;border-color:#8060ab}
+@media print{.ffck-sheet.matrix-sheet .matrix-scroll{width:calc(100% - .4mm);overflow:visible}}
+
+.course-post-conflicts{padding:10px 12px;border-radius:8px;background:#ffe4e7;color:#8b2434;border:1px solid #db9ca6;font-weight:600}.course-post-conflicts[hidden]{display:none}.course-post-row.post-door-conflict input[aria-invalid="true"]{border:2px solid #c74759;background:#fff0f2;color:#702331}
+
+.creation-connections-dialog{max-width:700px;width:min(94vw,700px)}.creation-connection-cards{display:grid;gap:12px;margin:18px 0}.creation-connection-button{width:100%;min-height:62px;font-size:18px;font-weight:600;padding:12px 18px}.creation-connection-button.connection-online,.creation-websocket-dialog .connection-online{background:#27744e!important;border-color:#1c5a3b!important;color:#fff!important}.creation-connection-button.connection-offline,.creation-websocket-dialog .connection-offline{background:#b63748!important;border-color:#8f2534!important;color:#fff!important}.creation-connection-status{font-size:14px;overflow-wrap:anywhere;margin:8px 0}.creation-connections-skip{width:100%;min-height:50px;margin-top:18px;background:#e4edf3;color:#173446}.creation-websocket-dialog{max-width:720px}
+
+/* Compact viewing headers: no duplicate cross on the combined justification. */
+body dialog.justification-dialog{padding-top:20px}
+body dialog.messages-dialog.has-dismiss,body dialog.journal-dialog.has-dismiss{padding-top:12px}
+body dialog.messages-dialog>h2,body dialog.journal-dialog>h2{margin:0 52px 16px 0;min-height:40px;display:flex;align-items:center;line-height:1.2;overflow-wrap:anywhere}
+@media(max-width:620px){body dialog.justification-dialog{padding-top:14px}}
+
+/* Detached chronology: one full window, table scrolling only. */
+html.chrono-list-page,html.chrono-list-page body{height:100%;overflow:hidden}
+html.chrono-list-page body{margin:0}
+html.chrono-list-page body dialog.chrono-detached-root{position:fixed;inset:0;margin:0;width:100%;max-width:none;height:100%;max-height:none;box-sizing:border-box;border:0;border-radius:0;padding:10px 18px 12px;overflow:hidden}
+
+/* Final activation: two clear choices, without a scrolling dialog. */
+body dialog.course-activation-dialog{box-sizing:border-box;max-height:calc(100dvh - 24px);overflow:hidden;padding:12px 18px}
+body dialog.course-activation-dialog[open]{display:flex;flex-direction:column;gap:10px}
+.course-activation-dialog>h2{flex:none;margin:0;font-size:22px}.course-activation-dialog>p:empty{display:none}
+.course-activation-dialog .course-ready-next{flex:none;margin:0;padding:8px}.course-activation-dialog .creation-step-progress{margin:0 0 6px}
+.course-activation-dialog>.session-phones{flex:1;min-height:40px;overflow:auto;margin:0;padding:0 0 0 20px}
+.activation-choice-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;flex:none}
+.activation-choice-row>.activation-force-choice,.activation-auto-card{min-width:0;margin:0;box-sizing:border-box}
+.activation-choice-row .activation-force-choice{height:100%;margin:0;padding:14px;min-height:100px;font-size:15px;line-height:1.3;cursor:pointer}
+.activation-choice-row input[type=checkbox]{appearance:auto!important;box-sizing:border-box;flex:0 0 30px;width:30px!important;height:30px;min-width:30px;margin:0;accent-color:#8d551c}
+.activation-auto-card{position:relative}.activation-auto-card .activation-force-choice{background:#e4effa;border-color:#9cb7d1;padding-right:46px}.activation-auto-card input[type=checkbox]{accent-color:#174e65}
+.activation-auto-card .activation-auto-help{position:absolute;right:10px;top:10px;margin:0}.activation-auto-card:has(input:disabled) .activation-force-choice{color:#5f6c78;background:#edf2f6;cursor:default}
+.course-activation-dialog .creation-checkout-footer{position:static;flex:none;margin-top:0;padding-top:8px}.course-activation-dialog .creation-checkout-navigation button{min-height:42px}.course-activation-dialog .creation-checkout-secondary button{padding:5px 8px}
+.automatic-reload-help{max-width:650px}.automatic-reload-help p{font-size:16px;line-height:1.45}
+@media(max-height:650px){.course-activation-dialog .creation-step-progress{display:none}.activation-choice-row .activation-force-choice{min-height:82px;font-size:14px;padding:10px}.activation-auto-card .activation-force-choice{padding-right:42px}.course-activation-dialog>h2{font-size:19px}}
+
+.course-import-source{background:#e5f2f8;border:1px solid #9ebfd0;border-left:4px solid #235875;border-radius:7px;color:#153e55;padding:9px 12px;font-size:14px;line-height:1.35;margin:8px 0}
+
+#compet-settings.compet-link-warning{background:#fff0b5!important;border-color:#d6b348!important;color:#6a4d10!important}#compet-settings.compet-link-warning:hover{background:#ffe68b!important}
+#compet-settings.compet-link-warning::after{content:'⚠\fe0e';display:inline-block;margin-left:auto;color:#ffd32e;font-size:22px;line-height:1;text-shadow:0 1px #735c17,1px 0 #735c17,-1px 0 #735c17;animation:control-alert-heartbeat 1.8s ease-in-out infinite}
+.course-data>summary>.compet-link-yellow{color:#ffd32e}
+@media(prefers-reduced-motion:reduce){#compet-settings.compet-link-warning::after{animation:none}}
+
+body dialog.creation-connections-dialog.has-dismiss{padding-top:12px}.creation-connections-dialog>h2{margin:0 52px 12px 0;min-height:40px;display:flex;align-items:center;line-height:1.2}
+
+.archive-delete-dialog{width:calc(100vw - 40px);max-width:950px}.archive-check-list{max-height:35vh;overflow:auto;border:1px solid #b6c9d7;border-radius:7px;margin:8px 0}.archive-check-row{display:flex!important;flex-direction:row!important;align-items:center;gap:12px;padding:10px 12px;margin:0!important;cursor:pointer}.archive-check-list .archive-check-row:nth-child(even){background:#edf3f8}.archive-check-list .archive-check-row:nth-child(odd){background:#fff}.archive-check-row input[type=checkbox]{width:24px!important;height:24px;min-width:24px;flex:none;margin:0}.archive-check-row span{font-size:14px;line-height:1.4;overflow-wrap:anywhere}
+
+/* 0.69: fixed connection control, one feedback area, native chrono window chrome. */
+#deployment-bar #compet-settings{margin-right:auto;min-height:40px;display:inline-flex;align-items:center;gap:8px;background:#174e65;color:#fff;border:1px solid #174e65}
+body dialog.compet-connection-dialog.has-dismiss{padding-top:12px}.compet-connection-dialog>h2{margin:0 52px 12px 0;min-height:40px;display:flex;align-items:center;line-height:1.2}
+.compet-connection-dialog .compet-confirmation{display:flex;flex-direction:row;font-size:16px;align-items:center;gap:14px;background:#eef4f8;border:1px solid #bbcedb;border-radius:8px;padding:12px;font-weight:600;line-height:1.4}
+.compet-connection-dialog input[type=checkbox]{width:26px;height:26px;min-width:26px;margin:0;accent-color:#174e65}
+.compet-connection-feedback{background:#edf3f7;border:1px solid #b7cbd7;border-radius:8px;padding:10px 14px;line-height:1.4}.compet-connection-feedback>p{margin:6px 0;overflow-wrap:anywhere}
+.compet-connection-feedback .connection-success{background:#dff1e4;color:#185d32;padding:10px;border-radius:6px}.compet-connection-feedback .connection-failure{background:#fbe1e3;color:#8d202c;padding:10px;border-radius:6px}
+html.chrono-list-page dialog.chrono-detached-root>h2{margin:0 0 8px}
+
+.update-install-button{display:inline-block;background:#174e65;color:white!important;padding:12px 18px;border-radius:7px;margin:8px 12px 8px 0;font-weight:600;text-decoration:none}.updates-dialog>a:not(.update-install-button){margin:8px 12px 8px 0;display:inline-block}
