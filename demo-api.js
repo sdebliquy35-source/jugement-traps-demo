@@ -64,7 +64,7 @@ window.Demo=(()=>{
   else if(p==='/api/health')out={status:'ok',version:'0.70 · démo',race:active().race,gatePatches:true,audio:true};
   else if(p==='/api/race')out={...active().race,canReset:true};
   else if(p==='/api/session')out=session();
-  else if(p==='/api/deployment'){if(options.method==='POST'&&b.role)state.role=b.role;out=status();}
+  else if(p==='/api/deployment'){if(options.method==='POST'){if(b.action==='promote'){if(b.confirmation!=='REPRENDRE COMME SERVEUR JUGEMENT')throw Error('Confirmation de reprise manquante.');state.role='server';}else if(b.role){if(!['server','ja'].includes(b.role))throw Error('Vue de démonstration invalide.');state.role=b.role;}}out=status();}
   else if(p==='/api/deployment/code')out={code:'123456',expiresAt:now()+300000};
   else if(p.startsWith('/api/deployment/'))out=status();
   else if(p==='/api/competffck')out=compet();

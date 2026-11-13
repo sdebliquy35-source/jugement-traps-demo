@@ -14,7 +14,7 @@ La course fictive tourne dans le navigateur : 30 dossards, départ toutes les 20
 - Messages à un juge ou à tous les téléphones fictifs, chronométreurs compris ; progression automatique envoyé/reçu/en attente/lu/effacé.
 - Chargement de course pas à pas, liste et parcours préremplis par une source fictive, postes, activation, archives et remise à zéro. Import PCE illustratif : aucun contenu du fichier choisi n’est envoyé ou interprété.
 - Connexion CompetFFCK, protections, renvois et récupération sont simulés. Les IP réservées aux exemples ne sont jamais contactées. Un renvoi affiche un bilan fictif, sans reproduire tous les contrôles d’un serveur de course.
-- Vue Juge Arbitre accessible via Poste et connexion. Deux archives fictives restent consultables. Les juges déportés illustrent la comparaison future, encore inactive sur les téléphones de course.
+- Vue Juge Arbitre accessible via Poste et connexion. Dans cette même fenêtre, « Revenir à la vue Serveur Jugement » permet de retrouver directement la vue Serveur sans réinitialiser les données fictives. Deux archives fictives restent consultables. Les juges déportés illustrent la comparaison future, encore inactive sur les téléphones de course.
 
 ## Données et limites
 

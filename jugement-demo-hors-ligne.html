@@ -777,7 +777,7 @@ window.Demo=(()=>{
   else if(p==='/api/health')out={status:'ok',version:'0.70 · démo',race:active().race,gatePatches:true,audio:true};
   else if(p==='/api/race')out={...active().race,canReset:true};
   else if(p==='/api/session')out=session();
-  else if(p==='/api/deployment'){if(options.method==='POST'&&b.role)state.role=b.role;out=status();}
+  else if(p==='/api/deployment'){if(options.method==='POST'){if(b.action==='promote'){if(b.confirmation!=='REPRENDRE COMME SERVEUR JUGEMENT')throw Error('Confirmation de reprise manquante.');state.role='server';}else if(b.role){if(!['server','ja'].includes(b.role))throw Error('Vue de démonstration invalide.');state.role=b.role;}}out=status();}
   else if(p==='/api/deployment/code')out={code:'123456',expiresAt:now()+300000};
   else if(p.startsWith('/api/deployment/'))out=status();
   else if(p==='/api/competffck')out=compet();
@@ -1879,6 +1879,7 @@ function deploymentDialog(first=false){
   const show=el('button','Afficher le code d’association du poste JA'),box=el('div',undefined,'pairing-code');
   show.onclick=async()=>{try{const result=await deploymentCommand({action:'pairing'});box.replaceChildren();const code=el('input');code.readOnly=true;code.value=result.code;code.classList.add('six-digit-code');code.setAttribute('aria-label','Code d’association JA');code.onclick=()=>code.select();box.append(el('p','Sur le poste JA : saisir ces six chiffres. Code valable cinq minutes, pour une seule association. Si nécessaire, indiquer l’adresse réseau de ce PC.'),code);code.select();}catch(e){sessionError(d,e);}};d.append(show,box);const change=el('button','Changer le rôle de ce poste');change.onclick=()=>{roleDialog=null;d.close();deploymentDialog(true);};d.append(el('p','Pour convertir une copie de cette installation en poste JA, choisir son rôle. Une sauvegarde de la base sera conservée avant toute réplication.'),change);
  }else{
+  const back=el('button','Revenir à la vue Serveur Jugement','demo-return-server');back.onclick=async()=>{back.disabled=true;try{await deploymentCommand({action:'configure',role:'server'});d.close();await refreshDeployment();await refreshSession();}catch(e){sessionError(d,e);back.disabled=false;}};d.append(el('p','Démonstration : les deux vues utilisent les mêmes données fictives. Le changement de vue ne réinitialise pas la course.'),back);
   d.append(el('p','Les fiches et les courses précédentes déjà copiées sont consultables sans le Serveur Jugement. Les levées de protection nécessitent sa connexion ; elles ne sont jamais mises en attente pour un envoi ultérieur.'));
   const who=el('input');who.placeholder='Nom du Juge Arbitre';who.maxLength=100;who.value=s.operator||'';
   const address=el('input');address.placeholder='http://192.168.1.52:8765 · vide = recherche automatique';address.value=s.source||'';
